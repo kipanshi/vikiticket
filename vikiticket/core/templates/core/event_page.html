@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block extra_head %}
+{% if page.slug == 'watch' %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8">
+<script src="{{ STATIC_URL }}js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+// Init prettyPhoto plugin
+function my_init_prettyPhoto() {
+	$("a[rel^='prettyPhoto']").prettyPhoto({
+		animationSpeed: 'normal', /* fast/slow/normal */
+		opacity: 0.80, /* Value between 0 and 1 */
+		showTitle: true, /* true/false */
+		//callback: function(){window.location = "#navigate";}, /* Called when prettyPhoto is closed */
+ 		theme: 'dark_rounded', /* light_rounded / dark_rounded / light_square / dark_square / facebook */
+// 		social_tools: true,
+	});
+};
+
+$(document).ready(function() {
+    my_init_prettyPhoto();
+});
+</script>
+{% endif %}
+{% endblock %}
+
+{% block title %}
+<title>{{ page.title }}</title>
+{% endblock %}
+
+{% block main %}
+
+{{ page.content|safe }}
+
+
+{% endblock %}

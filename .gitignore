@@ -1,0 +1,12 @@
+in
+ve
+*.pyc
+local_settings.py
+vikiticket_db
+.settings
+.project
+.pydevproject
+tiny_mce
+pictures
+admin
+.htaccess

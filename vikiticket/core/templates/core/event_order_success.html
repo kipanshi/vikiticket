@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load core_tags %}
+
+{% block main %}
+
+<h3>Ура! Заказ завершен</h3>
+
+<p class="preview">
+<b>Уважаемый(ая) {{ name }}!</b>
+<br/>
+<br/>
+
+<b>Пожалуйста распечатайте эту страницу или сохраните ее с помощью диалога <br/>
+"Save as/Сохранить как".</b><br/><br/>
+
+<b>Вы заказали следующие места:</b><br/>
+	{% for seat in seats %}
+		{% if seat.row.placement_first_letter != 'П' %}
+			- {{ _('Ложа') }} {{ seat }}, цена: {{ seat.price_category.price }} р.<br/>
+		{% else %}
+			- {{ seat }}, цена: {{ seat.price_category.price }} р.<br/>
+		{% endif %}
+	{% endfor %}
+	<br/>
+	<b>Общая сумма:</b> {{ seats|total }} р.
+<br/><br/>
+<b>Ваш номер телефона:</b> <br/>
+{{ phone }}
+<br/>
+
+{% if email %}
+<b>E-mail:</b>{{ email }}<br/>
+{% endif %}
+
+{% if comment %}
+<b>Дополнительная информация:</b><br/>
+{{ comment }}
+{% endif %}
+
+</p>
+<p>
+Mы свяжемся с Вами по телефону в самое ближайшее время.
+</p>
+
+
+<script type="text/javascript">
+<!--
+	add_hover($('.nav_menu #nav1'));
+//-->
+</script>
+{% endblock %}

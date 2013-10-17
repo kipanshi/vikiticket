@@ -1,0 +1,15 @@
+{% load core_tags %}Поступил новый заказ на мероприятие {{ order.event.title }}, 
+которое пройдет {{ order.event.date|date:"d F, Y" }} по адресу {{ order.event.stage_address }}.
+Необходима верификация заказа.
+
+    Заказ № {{ order.id }}
+    Кто: {{ order.client }}
+    Места:
+        {% for seat in order.seats.all %}{{ seat }} - {{ seat.price_category.price }} р.
+        {% endfor %}
+    Общая сумма: {{ order.seats.all|total }}
+    Телефон для верификации: {{ order.client.phone }}
+
+-- 
+Система бронирования билетов 
+VikiTicket, {{ order.create_date.year }}

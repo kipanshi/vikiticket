@@ -1,0 +1,451 @@
+@charset "utf-8";
+
+body {
+	font: 100%/1.4 Arial, Helvetica, sans-serif;
+	background: #000;
+	background-position: 0px 100px;
+	margin: 0;
+	padding: 0;
+	color: #4c4c4c;
+}
+
+/* ~~ Element/tag selectors ~~ */
+ul, ol, dl { /* Due to variations between browsers, it's best practices to zero padding and margin on lists. For consistency, you can either specify the amounts you want here, or on the list items (LI, DT, DD) they contain. Remember that what you do here will cascade to the .nav list unless you write a more specific selector. */
+	padding: 0;
+	margin: 0;
+}
+h1, h2, h3, h4, h5, h6, p {
+	margin-top: 0;	 /* removing the top margin gets around an issue where margins can escape from their containing div. The remaining bottom margin will hold it away from any elements that follow. */
+	padding-right: 15px;
+	padding-left: 15px; /* adding the padding to the sides of the elements within the divs, instead of the divs themselves, gets rid of any box model math. A nested div with side padding can also be used as an alternate method. */
+}
+a img { /* this selector removes the default blue border displayed in some browsers around an image when it is surrounded by a link */
+	border: none;
+}
+/* ~~ Styling for your site's links must remain in this order - including the group of selectors that create the hover effect. ~~ */
+a:link {
+	color: #003399;
+	text-decoration: none; /* unless you style your links to look extremely unique, it's best to provide underlines for quick visual identification */
+}
+a:visited {
+	color: #003399;
+	text-decoration: none;
+}
+a:hover, a:active, a:focus { /* this group of selectors will give a keyboard navigator the same hover experience as the person using a mouse. */
+	text-decoration: none;
+	color: #001f5c;
+	
+}
+
+dd {
+display: block;
+-webkit-margin-start: 0px;
+}
+
+/* ~~ this fixed width container surrounds the other divs ~~ */
+.container {
+	width: 1034px;
+	background: #fff;
+	margin: 0 auto; /* the auto value on the sides, coupled with the width, centers the layout */
+}
+
+/* ~~ the header is not given a width. It will extend the full width of your layout. It contains an image placeholder that should be replaced with your own linked logo ~~ */
+.header {
+	width: 1034px;
+	height: 533px;
+	background: #fff;
+}
+
+/* ~~ This is the layout information. ~~ 
+
+1) Padding is only placed on the top and/or bottom of the div. The elements within this div have padding on their sides. This saves you from any "box model math". Keep in mind, if you add any side padding or border to the div itself, it will be added to the width you define to create the *total* width. You may also choose to remove the padding on the element in the div and place a second div within it with no width and the padding necessary for your design.
+
+*/
+
+.banner {
+	
+}
+
+.ajax_loader{
+	display: none;
+	position: absolute;
+	top: 555px;
+	left: 50%;
+	height: 16px;
+	width: 16px;
+	background:url(images/ajax-loader.gif) no-repeat;	
+}
+
+.nav_menu {
+	
+	padding: 0px;
+	margin: 0px;
+	height: 40px;
+	
+}
+
+.nav_menu ul {
+	position: relative;
+	margin: 0px;
+	padding: 0px;
+	z-index: 1;	
+}
+
+.nav_menu ul li {
+	display: inline;
+	position: absolute;
+	padding: 0px 8px 2px 10px;
+	margin: 0px;
+	color: #929292;
+	font-size: 30px;
+	font-family: Impact;
+	background: 
+ }
+ 
+ .nav_menu ul a {
+	 color: #929292;;
+ }
+
+.nav_menu ul li:hover {
+	background: #5e7dc1;
+	color: #fff;
+}
+
+.nav_menu ul a:hover {
+	color: #fff;
+}
+
+.nav_menu ul a .active {
+	background: #5e7dc1;
+	color: #fff;
+}
+
+.nav_menu ul .active li{
+	color: #fff;
+	background: #5e7dc1;
+}
+
+.nav_menu .active {
+	color: #fff;
+	background: #5e7dc1;
+}
+
+#nav1 {
+	left: 67px;
+	top: -40px;
+}
+
+#nav2 {
+	left: 266px;
+	top: -35px;
+}
+
+#nav3 {
+	left: 505px;
+	top: -21px;
+}
+
+#nav4 {
+	left: 727px;
+	top: -9px;
+}
+
+.nav_menu ul a:hover {
+	backgrund: #5e7dc1;
+}
+
+.nav_menu ul div img {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: -1;
+}
+.content {
+	float: left;
+	padding: 14px;
+	background: #fff;
+}
+
+.text {
+	float: left;
+	background: #fff;
+	padding: 0px 60px 60px 60px;
+	font-size: 14px;
+	text-align: center;
+	width: 886px;
+}
+
+.text h1 {
+	font-size: 56px;
+	color: #003399;
+	font-weight: bold;
+	padding: 0px;
+	margin: 0px;
+}
+
+.text h2 {
+	font-family: Impact;
+	font-size: 40px;
+	color: #000;
+	padding: 0px;
+	margin: 0px;
+	letter-spacing: 1px; 
+}
+
+.text h3 {
+	font-size: 30px;
+	color: #5b88c5;
+	font-weight: bold;
+	padding: 0px;
+	margin: 0px;
+}
+
+.text h4 {
+	font-size: 22px;
+	padding: 0 0 0 4px;
+	margin: 0px;
+	letter-spacing: 2px; 
+	
+}
+
+.text .small_link {
+	font-size: 12px;
+	padding-left: 7px;	
+}
+
+.text p {
+	text-align: justify;	
+}
+
+.bottom-info {
+	text-align: center;
+	font-size: 14px;	
+	padding: 10px 0px;
+}
+
+/* ~~ The footer ~~ */
+.footer {
+    background: #eee repeat scroll 0 0 ;
+    color: #000000;
+    font-size: 10px;
+    padding: 10px 0;
+}
+
+.footer center {
+	padding-bottom: 3px;
+}
+
+/* ~~ miscellaneous float/clear classes ~~ */
+.fltrt {  /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+	float: right;
+	margin-left: 8px;
+}
+.fltlft { /* this class can be used to float an element left in your page. The floated element must precede the element it should be next to on the page. */
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat { /* this class can be placed on a <br /> or empty div as the final element following the last floated div (within the #container) if the #footer is removed or taken out of the #container */
+	clear:both;
+	height:0;
+	font-size: 1px;
+	line-height: 0px;
+}
+
+/* Social */
+#social_container {
+	float: right;
+	width: 200px;
+}
+
+#vk_groups {
+	float: right;
+	padding: 0px 0px 0px 20px;
+	margin: 5px;	
+}
+
+#vk_like {
+	float: left;
+	margin: 5px;	
+}
+
+#fb_like {
+	overflow: hidden;
+	padding-left: 15px;
+	float: left;
+	margin: 5px;
+}
+
+#twitter {
+	float: left;
+	margin: 5px;
+}
+
+#we_in_social {
+	float: left;
+	margin: 5px;	
+}
+
+/* ORDER STYLES */
+
+.button {
+	border: 0;
+}
+
+.seat {
+	margin: 2px;
+	padding: 0px;
+	border: 0px;
+	border-spacing: 0px;
+	width: 20px;
+	height: 20px;
+	background: #7f7;
+}
+
+.f {
+	cursor: pointer;
+}
+
+.r {
+	background: #faa;
+}
+
+.b {
+	background: #bbb;
+}
+
+.s {
+	background: #faa;
+}
+
+.n {
+	background: #bbb;
+}
+
+.o {
+	background: #88f;
+	cursor: pointer;
+}
+
+.row {
+	float: none;
+	margin: 3px;
+}
+
+.stage-table{
+	float: left;	
+}
+
+.stage-table td {
+	text-align: center;
+}
+
+.placement-title {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.row-legend {
+	float: none;
+	width: 40px;
+	font-size: 12px;
+	text-align: left;
+}
+
+.row-body {
+	text-align: center;
+	/*width: 840px;*/ /* Add width in admin CSS to make it centered */
+
+}
+
+
+.lodges-wrapper{
+	padding-left: 160px;
+}
+
+.lodges-a {
+	width: 280px;
+	float: left;
+}
+
+.lodges-b {
+	width: 280px;
+	float: left;
+}
+
+.lodges-c {
+	width: 470px;
+	float: left;
+	margin-left: 50px;
+}
+
+.order-table {
+	margin: 0 auto;
+	text-align: left;
+}
+
+label {
+	padding-right: 10px;
+	float: right;
+	width: 130px;
+}
+
+.errorlist {
+	list-style: none;
+	font-size: 12px;
+	color: #f55;
+}
+
+.submit-order {
+	font-size: 16px;
+	font-weight: bold;
+	cursor: pointer;
+	background: #aaf;
+	color: #336;
+	padding: 3px;
+}
+
+.submit-order:hover {
+	color: #666;
+}
+
+.preview {
+	margin-top: 20px;
+	font-size: 17px;
+}
+
+.submit-row {
+	width: 100%;
+	height: 70px;
+}
+
+.helptext {
+	font-size: 10px;
+	color: #999;
+}
+
+.edit-form {
+	width: 50%;
+	float: left;
+}
+
+.confirm-form {
+	width: 50%;
+	float: right;
+}
+
+/* Tooltip */
+.tooltip {
+    z-index:999;
+    left:-9999px;
+    top:-9999px;
+    background:#fff;
+    border:1px solid #ccc; 
+    font-size:11px;
+    color:#323232;
+    padding:4px 8px;
+    position:absolute;
+}
+.tooltip p {
+    margin: 0px;
+    padding: 0px;
+}

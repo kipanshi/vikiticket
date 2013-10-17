@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block extra_head %}
+	{% if user.is_staff %}
+		<link href="{{ STATIC_URL }}css/admin_stage.css" rel="stylesheet" type="text/css">
+	{% endif %}
+	<script src="{{ STATIC_URL }}js/tooltip.js" type="text/javascript"></script>
+	<script src="{{ STATIC_URL }}js/stage_script.js" type="text/javascript"></script>
+{% endblock %}
+
+{% block main %}
+{% if not event.past_due or user.is_authenticated %}
+{% spaceless %}
+
+<!-- Stage map generation -->
+<p>
+<span style="color:#afa;">Зеленые места</span> свободны для заказа. Щелкните на них чтобы пометить как выбранные. 
+<br/>Выбранные места помечаются <span style="color:#aaf;">синим цветом</span>. Единовременно можно заказать не более 5-и билетов.
+<br/>
+<span style="color:#aaa;">Серые места</span> - в продаже у наших партнеров.
+{% if user.is_staff %}
+<br/>
+<span style="color:#ffa;">Желтые места</span> - заказаны через систему.
+<br/>
+<span style="color:#faf;">Фиолетовые места</span> - зарезервированы (вписки).
+<span style="color:#faa;">Красные места</span> - проданные билеты.
+{% endif %}
+</p>
+{% for placement in stage.placements.all|dictsort:"name" %}
+		<table class="stage-table">
+		  <tr>
+		  <td colspan=2 class='placement-title'>
+				  {{ placement.name }}
+		  </td>
+		  </tr>
+		    {% with forloop.counter as placement_id %}
+				{% for row in placement.rows.all|dictsortreversed:"number" %}
+						<tr>
+						  <td class="row-legend">
+							<!-- <div class="row-legend"> -->
+								 {{ row.prefix|default:_("Ряд") }} {{ row.number }}{{ row.suffix|default:'' }}
+							<!-- </div> -->
+					      </td>
+					      <td>
+							<table class="row-body rb{{ placement_id }}">
+								<tr>
+									<td>
+									<div style="float: none;">
+								{% for seat in row.seats.all|dictsort:"number" %}
+								<button class="seat {{ seat.status|lower }}" title="{% if seat.tag %}{% if seat.status == 'S' %}{% if user.is_staff %}Продано в {{ seat.tag }}{% else %}Продано{% endif %}{% else %}Билеты доступны в {{ seat.tag }}{% endif %}{% else %}{% if seat.status == 'F' %}Цена: {{ seat.price_category.price }}{% else %}{% if user.is_staff %}{% if seat.status == 'R' %}Резерв{% else %}{% if seat.status == 'B' %}Заказано{% else %}Продано{% endif %}{% endif %}{% else %}{% if seat.status == 'B' %}Заказано{% else %}Продано{% endif %}{% endif %}{% endif %}{% endif %}" id="seat_{{ seat.id }}">
+										{{ seat.number }}
+									</button>
+								{% endfor %}
+									</td>
+								</tr>
+							</table><!-- END ROW-BODY -->
+						  </td>
+						</tr>
+				{% endfor %}
+			  {% endwith %}
+			</table>
+{% endfor %}
+
+{{ event.stage_picture|safe }}
+
+<div class="clearfloat"></div>
+<div style="clear:both; margin-bottom: 20px;"></div>
+<!-- End stage map generation -->
+{% endspaceless %}
+
+{% if not event.date_arrived %}
+<!-- ORDER FORM -->
+<form action="?action=preview" method="post">
+{% csrf_token %}
+	<table class="order-table">
+		{{ form.as_table }}
+	<tr>
+		<th>
+		</th>
+		<td style="text-align: left;">
+			<button class="submit-order" type="submit" onclick="this.disabled=1; this.form.submit();">{{ _("Заказать") }}</button>
+		</td>
+	</tr>
+	</table>
+</form>
+<!-- END ORDER FORM -->
+{% endif %}
+<br/>
+{{ event.info|safe }}
+{% endif %}
+{% if event.past_due %}
+  <h3 style="padding: 20px 20px;">Спасибо большое всем кто был на концерте,<br/> было здорово!</h3>
+{% else %}
+{% if event.date_arrived %}
+  <h3>Ждем Вас сегодня в {{ event.date|date:"H:i" }}, {{ event.stage_name }}!</h3>
+{% endif %}
+{% endif %}
+{% endblock %}

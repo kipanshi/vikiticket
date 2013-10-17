@@ -1,0 +1,40 @@
+{% extends 'vikiticket_base.html' %}
+{% load url from future %}
+
+{% block extra_head %}
+{% endblock %}
+
+{% block main %}
+
+{% for event in events %}
+{% if not event.past_due and event.is_published %}
+{% if forloop.counter == 0 %}
+<h3> Текущие концерты: </h3>
+<hr/>
+{% endif %}
+<!-- EVENT --><div class="vikiticket-event">
+<a href="{% url 'order_view' event.slug %}">
+<h4> {{ event.title }} </h4>
+<img src="{{ STATIC_URL }}images/banner/{{ event.slug }}.jpg" width="350" />
+<div>-- Почитать / Посмотреть / Послушать / Купить билет --</div>
+</a>
+<!-- END EVENT --></div>
+{% endif %}
+{% endfor %}
+
+<h3> Прошедшие концерты: </h3>
+<hr/>
+
+{% for event in events %}
+
+{% if event.past_due and event.is_published %}
+<!-- EVENT --><div class="vikiticket-event">
+<a href="{% url 'order_view' event.slug %}">
+<h4> {{ event.title }} </h4>
+<img src="{{ STATIC_URL }}images/banner/{{ event.slug }}.jpg" width="350" />
+<div>-- Почитать / Посмотреть / Послушать --</div>
+</a>
+<!-- END EVENT --></div>
+{% endif %}
+{% endfor %}
+{% endblock %}

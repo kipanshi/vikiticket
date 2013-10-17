@@ -1,0 +1,62 @@
+import os
+
+
+DIRNAME = os.path.normpath(os.path.dirname(__file__))
+
+
+# ==============
+# Debug settings
+# ==============
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
+SERVE_STATIC_FILES = True
+
+# ==============
+# Email settings
+# ==============
+DEFAULT_FROM_EMAIL = 'vikiticket@dartz.spb.ru'
+SERVER_EMAIL = DEFAULT_FROM_EMAIL
+
+# -----------------
+# Database settings
+# -----------------
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'vikiticket_db',                      # Or path to database file if using sqlite3.
+        'USER': 'vikiticket_u',                      # Not used with sqlite3.
+        'PASSWORD': 'testing',                  # Not used with sqlite3.
+        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+    }
+}
+
+# =============
+# Site settings
+# =============
+SITE_URL = 'http://127.0.0.1:4422'
+
+#ADMIN_MEDIA_PREFIX='/static/admin/'
+#STATIC_URL = '/static/'
+#TINYMCE_JS_URL = STATIC_URL + 'js/tiny_mce/tiny_mce.js'
+
+STATIC_ROOT = 'static.mydomain.com'
+MEDIA_ROOT = 'media.mydomain.com'
+MEDIA_URL = '/media/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(DIRNAME, 'static'),
+)
+
+
+
+# ======================================
+# Locally installed apps and middlewares
+# ======================================
+LOCAL_INSTALLED_APPS = (
+                        'south',
+                        )
+LOCAL_MIDDLEWARE_CLASSES = ()
